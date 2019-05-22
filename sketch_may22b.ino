@@ -1,3 +1,5 @@
+#define high 920
+#define low 700
 const int analogPin = A0;
 const int ledCount = 10;
 int ledPins[] = {2,3,4,5,6,7,8,9,10,11};
@@ -14,13 +16,12 @@ void loop() {
   // put your main code here, to run repeatedly:
   int value = analogRead(A0);
   int READ = analogRead(analogPin);
-  if(READ >930) READ = 930;
-  if(READ < 400) READ = 400;
-  int LEVEL = map(READ,400,930,0,ledCount);
+  //if(READ >high) READ = high;
+  //if(READ < low) READ = low;
+  int LEVEL = map(READ,low,high,0,ledCount);
   for(int LED = 0;LED<ledCount;LED++){
-    if(LED<LEVEL){
-      digitalWrite(ledPins[LED],HIGH);
-      
+    if(LED<=LEVEL){
+      digitalWrite(ledPins[LED],HIGH);  
   }
   else{
     digitalWrite(ledPins[LED],LOW);
